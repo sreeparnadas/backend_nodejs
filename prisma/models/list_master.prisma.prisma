@@ -1,0 +1,12 @@
+model ListMaster {
+  id          Int           @id @default(autoincrement())
+  title       String        @db.VarChar(255)
+  description String?       @db.Text
+  color       String?       @db.VarChar(50)
+  isArchived  Boolean       @default(false)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  details     ListDetails[]
+
+  @@map("list_master")
+}

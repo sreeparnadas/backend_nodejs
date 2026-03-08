@@ -1,0 +1,21 @@
+model ListDetails {
+  id           Int        @id @default(autoincrement())
+  title        String     @db.VarChar(255)
+  description  String?    @db.Text
+  completed    Boolean    @default(false)
+  priority     Priority   @default(MEDIUM)
+  dueDate      DateTime?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  listMasterId Int
+  listMaster   ListMaster @relation(fields: [listMasterId], references: [id], onDelete: Cascade)
+
+  @@index([listMasterId], map: "list_details_listMasterId_fkey")
+  @@map("list_details")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
