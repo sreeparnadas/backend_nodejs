@@ -10,3 +10,17 @@ npx prisma generate
 
 # 3. Open Studio (optional)
 npx prisma studio
+
+#How an API Request Flows?
+
+Client (Postman / Frontend)
+        ↓  HTTP Request
+    Router  (routes/list.ts)
+        ↓  calls
+  Controller  (controllers/list.ts)
+        ↓  queries
+    Prisma  (talks to DB)
+        ↓  returns data
+  Controller  sends res.json()
+        ↓
+Client gets response
